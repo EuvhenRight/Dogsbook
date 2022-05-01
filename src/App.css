@@ -1,0 +1,33 @@
+.App-wrapper {
+ margin: 0 auto;
+ display: grid;
+ width: 1200px;
+ grid-template-areas: 
+ "h h"
+ "s c";
+
+ grid-template-rows: 60px 1fr;
+ grid-template-columns: 2fr 10fr;
+}
+
+.header{
+  grid-area: h;
+  background-color: darkgreen;
+}
+.header img {
+width: 70px;
+}
+
+.sidebar{
+  grid-area: s;
+  background-color: darkgrey;
+}
+
+.avatar img {
+  width: 50px;
+}
+
+.profile{
+  grid-area: c;
+  background-color: darksalmon;
+}
