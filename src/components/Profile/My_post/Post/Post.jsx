@@ -1,15 +1,16 @@
 import React from 'react';
 import classes from './Post.module.css';
+import Ava_p from './ava1.jpg'
 
 
 
 const Post = (props) => {
     return (
         <div className={classes.wall_post}>
-            <img src="https://m.media-amazon.com/images/M/MV5BMDU2ZjJmMDEtNWFhYS00OWE3LTk2MTEtNmQ4NjdhY2NhNGExXkEyXkFqcGdeQXVyNDI5MDI0OA@@._V1_FMjpg_UX1000_.jpg" alt="" />
+            <img src={Ava_p} alt="" />
             {props.message}
             <div>
-                < span >likes</span > {props.like}
+                <span >likes</span > {props.like}
             </div>
         </div >
     )

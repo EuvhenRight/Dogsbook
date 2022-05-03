@@ -1,23 +1,28 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import classes from './Sidebar.module.css'
+
+
+const SelectedLink = ({ isActive }) => isActive ? classes.active : classes.link;
+
 
 const Sidebar = () => {
     return (
         <nav className={classes.sidebar}>
-            <div>
-                <a>Profile</a>
+            <div className={classes.link}>
+                <NavLink className={SelectedLink} to='/profile'>Profile</NavLink>
             </div>
             <div>
-                <a>Message</a>
+                <NavLink to='/dialogs' className={SelectedLink}>Message</NavLink>
             </div>
             <div>
-                <a>News</a>
+                <NavLink to='/news' className={SelectedLink}>News</NavLink>
             </div>
             <div>
-                <a>Music</a>
+                <NavLink to='/music' className={SelectedLink}>Music</NavLink>
             </div>
             <div>
-                <a>Settings</a>
+                <NavLink to='/settings' className={SelectedLink}>Settings</NavLink>
             </div>
         </nav>
     )

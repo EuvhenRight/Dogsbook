@@ -1,0 +1,16 @@
+.avatar_info img {
+    width: 80px;
+    border-radius: 50%;
+    border-style:double;
+    border-color:deeppink;
+    border-width: 5px
+  }
+  
+  .profile_info{
+    grid-area: c;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .data_user {
+    padding: 10px;
+  }
