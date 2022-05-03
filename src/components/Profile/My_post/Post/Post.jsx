@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Post.module.css';
-import Ava_p from './ava1.jpg'
+import Ava_p from './../../../Photo/ava1.jpg'
 
 
 
@@ -10,7 +10,7 @@ const Post = (props) => {
             <img src={Ava_p} alt="" />
             {props.message}
             <div>
-                <span >likes</span > {props.like}
+                <span >likes</span > {props.likesCount}
             </div>
         </div >
     )
