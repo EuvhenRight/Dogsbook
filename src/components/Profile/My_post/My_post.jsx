@@ -3,9 +3,15 @@ import classes from './My_post.module.css'
 import Post from './Post/Post';
 
 
-const My_post = () => {
+const My_post = (props) => {
+
+
+    let postsElement = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />)
+
+
     return (
         <div className={classes.my_post}>
+            <h2>My Posts</h2>
             <div className={classes.wall_post}>
                 <textarea>Hello EMMA</textarea>
             </div>
@@ -13,8 +19,7 @@ const My_post = () => {
                 <button>Add posts</button>
             </div>
             <div>
-                <Post message='Hi my famos dog!' like='100' />
-                <Post message='I love you!' like='200' />
+                {postsElement}
             </div>
         </div >
     )
