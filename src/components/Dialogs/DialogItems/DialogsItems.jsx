@@ -8,7 +8,7 @@ const DialogsItems = (props) => {
     return (
         <div>
             <NavLink className={SelectedDialog} to={'/dialogs/' + props.id}>
-                {props.name}
+                {props.name} {props.avatar}
             </NavLink>
         </div>
     )
