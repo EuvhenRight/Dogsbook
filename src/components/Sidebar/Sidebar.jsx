@@ -31,6 +31,7 @@ const Sidebar = (props) => {
             <div>
                 <h3>Friends</h3>
                 {sidebarElements}
+                <image ></image>
             </div>
         </nav>
     )

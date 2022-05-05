@@ -12,7 +12,7 @@ let Appstate = {
     },
     dialogPage: {
         dialogs: [
-            { id: 1, name: 'Vasya', avatar: "img" },
+            { id: 1, name: 'Vasya', avatar: "https://static.rfstat.com/renderforest/images/v2/logo-homepage/gradient_4.png" },
             { id: 2, name: 'Harley' },
             { id: 3, name: 'Mira' },
             { id: 4, name: 'Richi' },
@@ -28,7 +28,7 @@ let Appstate = {
     },
     sideBar: {
         friends: [
-            { id: 1, name: 'Vasya', avatar: "img" },
+            { id: 1, name: 'Vasya', avatar: 'https://static.rfstat.com/renderforest/images/v2/logo-homepage/gradient_4.png' },
             { id: 2, name: 'Harley', avatar: "img" },
             { id: 3, name: 'Mira', avatar: "img" }
         ]

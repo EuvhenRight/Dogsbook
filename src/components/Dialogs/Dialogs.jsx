@@ -11,7 +11,7 @@ const Dialogs = (props) => {
         props.state.dialogs.map(d => <DialogsItems id={d.id} name={d.name} />);
 
     let dialogAvatar =
-        props.state.dialogs.map(d => <DialogsItems avatar={d.avatar} />);
+        props.state.dialogs.map(d => <DialogsItems img src={d.avatar} />);
 
     let messagesElements =
         props.state.messages.map(m => <MessagesItems id={m.id} message={m.message} />);
