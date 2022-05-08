@@ -8,6 +8,7 @@ const DialogsItems = (props) => {
     return (
         <div>
             <NavLink className={SelectedDialog} to={'/dialogs/' + props.id}>
+                <img className={classes.dialogsavatar} src={props.avatar}></img>
                 {props.name}
             </NavLink>
         </div>

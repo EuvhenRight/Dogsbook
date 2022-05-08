@@ -1,12 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './Sidebar.module.css'
-
+import SidebarItems from './SidebarItems';
 
 const SelectedLink = ({ isActive }) => isActive ? classes.active : classes.link;
 
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+
+    let sidebarElements =
+        props.state.friends.map(d => <SidebarItems id={d.id} name={d.name} avatar={d.avatar} />);
+
     return (
         <nav className={classes.sidebar}>
             <div className={classes.link}>
@@ -23,6 +27,12 @@ const Sidebar = () => {
             </div>
             <div>
                 <NavLink to='/settings' className={SelectedLink}>Settings</NavLink>
+            </div>
+            <div className={classes.sidebarData}>
+                <h3>Friends</h3>
+                <div className={classes.sidebarMain}>
+                    {sidebarElements}
+                </div>
             </div>
         </nav>
     )
