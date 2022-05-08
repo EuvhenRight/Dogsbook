@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { createRef } from 'react';
+import { newPost, newPostText } from '../../../redux/state';
 import classes from './My_post.module.css'
 import Post from './Post/Post';
 
@@ -8,15 +9,31 @@ const My_post = (props) => {
 
     let postsElement = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />)
 
+    let newAddPost = createRef();
+
+    let addPost = () => {
+        let text = newAddPost.current.value;
+        props.newPost(text);
+        newAddPost.current.value = '';
+    };
+
+    let addTextArea = () => {
+        let text = newAddPost.current.value;
+        props.updateNewPostText(text);
+        console.log(text);
+    };
 
     return (
         <div className={classes.my_post}>
             <h2>My Posts</h2>
             <div className={classes.wall_post}>
-                <textarea>Hello EMMA</textarea>
+                <textarea
+                    onChange={addTextArea}
+                    ref={newAddPost}
+                    value={props.newPostText} />
             </div>
             <div className={classes.wall_post}>
-                <button>Add posts</button>
+                <button onClick={addPost}>Add posts</button>
             </div>
             <div>
                 {postsElement}

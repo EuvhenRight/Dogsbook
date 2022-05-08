@@ -8,10 +8,7 @@ import MessagesItems from './MessagesItem/MessagesItem';
 const Dialogs = (props) => {
 
     let dialogElements =
-        props.state.dialogs.map(d => <DialogsItems id={d.id} name={d.name} />);
-
-    let dialogAvatar =
-        props.state.dialogs.map(d => <DialogsItems img src={d.avatar} />);
+        props.state.dialogs.map(d => <DialogsItems id={d.id} name={d.name} avatar={d.avatar} />);
 
     let messagesElements =
         props.state.messages.map(m => <MessagesItems id={m.id} message={m.message} />);
@@ -19,17 +16,10 @@ const Dialogs = (props) => {
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                {/* 
-                <div className={classes.img}>
-
-                </div> */}
-                {dialogAvatar}
                 {dialogElements}
-
             </div>
             <div className={classes.messages}>
                 {messagesElements}
-
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './Sidebar.module.css'
-import SidebarItems from './SidebarFriends';
+import SidebarItems from './SidebarItems';
 
 const SelectedLink = ({ isActive }) => isActive ? classes.active : classes.link;
 
@@ -28,10 +28,11 @@ const Sidebar = (props) => {
             <div>
                 <NavLink to='/settings' className={SelectedLink}>Settings</NavLink>
             </div>
-            <div>
+            <div className={classes.sidebarData}>
                 <h3>Friends</h3>
-                {sidebarElements}
-                <image ></image>
+                <div className={classes.sidebarMain}>
+                    {sidebarElements}
+                </div>
             </div>
         </nav>
     )
