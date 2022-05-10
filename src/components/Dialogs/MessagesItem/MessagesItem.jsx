@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { createRef } from 'react';
 // import { NavLink } from 'react-router-dom';
 import classes from './../Dialogs.module.css'
+import Messages from './Messages'
+import { updateNewPostText, DialogMessage, newMessageText } from '../../../redux/state';
 
 const MessagesItems = (props) => {
 
+    let messagesElement = props.messages.map(mes => <Messages id={mes.id} message={mes.message} />);
+
+    let newMessages = createRef();
+
+    let addDialogMessage = () => {
+        let textMes = newMessages.current.value;
+        props.DialogMessage(textMes);
+        newMessages.current.value = '';
+    };
+
+    let addTextMessages = () => {
+        let textMes = newMessages.current.value;
+        props.updateNewPostText(textMes);
+    };
 
 
     return (
@@ -11,9 +27,18 @@ const MessagesItems = (props) => {
 
             {props.message}
             <div>
-                <textarea />
+                <textarea
+                    onChange={addTextMessages}
+                    ref={newMessages}
+                    value={props.newMessageText} />
             </div>
-            <button>Add posts</button>
+            <button onClick={addDialogMessage}>Add posts</button>
+            <div>
+                {props.messages}
+            </div>
+            <div>
+                {messagesElement}
+            </div>
         </div>
     )
 }

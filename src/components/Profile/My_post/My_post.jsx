@@ -20,7 +20,6 @@ const My_post = (props) => {
     let addTextArea = () => {
         let text = newAddPost.current.value;
         props.updateNewPostText(text);
-        console.log(text);
     };
 
     return (

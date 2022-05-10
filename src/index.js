@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { newPost, subscriber, updateNewPostText } from './redux/state';
+import { newPost, subscriber, updateNewPostText, DialogMessage } from './redux/state';
 import { BrowserRouter } from 'react-router-dom';
 import state from './redux/state';
 
@@ -16,7 +16,9 @@ export let EnterNewState = (state) => {
             <App
                 Appstate={state}
                 newPost={newPost}
-                updateNewPostText={updateNewPostText} />
+                updateNewPostText={updateNewPostText}
+                DialogMessage={DialogMessage}
+            />
         </BrowserRouter>
     );
 }

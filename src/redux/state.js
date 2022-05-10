@@ -11,7 +11,7 @@ let Appstate = {
             // { id: 3, message: 'I love you!', likesCount: 150 },
             // { id: 4, message: 'I love you!', likesCount: 150 }
         ],
-        newPostText: 'privet'
+        newPostText: ''
     },
 
     dialogPage: {
@@ -24,7 +24,8 @@ let Appstate = {
         ],
         messages: [
             { id: 1, message: 'How are you?' },
-        ]
+        ],
+        newMessageText: ''
     },
     sideBar: {
         friends: [
@@ -48,14 +49,25 @@ export const newPost = () => {
 };
 
 export const updateNewPostText = (newText) => {
-    Appstate.profilePage.newPostText = newText;
+    Appstate.newPostText = newText;
     EnterNewState(Appstate);
 };
 
 export const subscriber = (observer) => {
     EnterNewState = observer;
 
-}
+};
+
+export const DialogMessage = () => {
+    let newDialogmessage = {
+        id: 2,
+        message: Appstate.profilePage.newMessageText,
+    };
+
+    Appstate.dialogPage.messages.push(newDialogmessage);
+    Appstate.dialogPage.newMessageText = '';
+};
+
 
 
 
