@@ -8,10 +8,10 @@ import MessagesItems from './MessagesItem/MessagesItem';
 const Dialogs = (props) => {
 
     let dialogElements =
-        props.dialogPage.dialogs.map(d => <DialogsItems id={d.id} name={d.name} avatar={d.avatar} />);
+        props.state.dialogs.map(d => <DialogsItems id={d.id} name={d.name} avatar={d.avatar} />);
 
     let messagesElements =
-        props.dialogPage.messages.map(m => <MessagesItems id={m.id} message={m.message} />);
+        props.state.messages.map(m => <MessagesItems id={m.id} message={m.message} />);
 
     return (
         <div className={classes.dialogs}>
@@ -20,12 +20,12 @@ const Dialogs = (props) => {
             </div>
             <div className={classes.messages}>
                 {messagesElements}
-                <MessagesItems
+                {/* <MessagesItems
                     messages={props.dialogPage.messages}
                     newMessageText={props.dialogPage.newMessageText}
                     updateNewPostMessage={props.updateNewPostMessage}
                     DialogMessage={props.DialogMessage}
-                />
+                /> */}
             </div>
         </div>
     )
