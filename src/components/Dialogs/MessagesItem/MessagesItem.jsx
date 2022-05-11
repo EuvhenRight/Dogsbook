@@ -2,7 +2,7 @@ import React, { createRef } from 'react';
 // import { NavLink } from 'react-router-dom';
 import classes from './../Dialogs.module.css'
 import Messages from './Messages'
-import { updateNewPostText, DialogMessage, newMessageText } from '../../../redux/state';
+import { updateNewPostMessage, DialogMessage, newMessageText } from '../../../redux/state';
 
 const MessagesItems = (props) => {
 
@@ -18,7 +18,7 @@ const MessagesItems = (props) => {
 
     let addTextMessages = () => {
         let textMes = newMessages.current.value;
-        props.updateNewPostText(textMes);
+        props.updateNewPostMessage(textMes);
     };
 
 

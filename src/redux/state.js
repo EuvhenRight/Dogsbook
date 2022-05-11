@@ -49,7 +49,7 @@ export const newPost = () => {
 };
 
 export const updateNewPostText = (newText) => {
-    Appstate.newPostText = newText;
+    Appstate.profilePage.newPostText = newText;
     EnterNewState(Appstate);
 };
 
@@ -68,7 +68,9 @@ export const DialogMessage = () => {
     Appstate.dialogPage.newMessageText = '';
 };
 
-
-
+export const updateNewPostMessage = (newMes) => {
+    Appstate.dialogPage.newMessageText = newMes;
+    EnterNewState(Appstate);
+};
 
 export default Appstate;

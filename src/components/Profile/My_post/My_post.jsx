@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { newPost, newPostText } from '../../../redux/state';
+import { updateNewPostText, newPost, newPostText } from '../../../redux/state';
 import classes from './My_post.module.css'
 import Post from './Post/Post';
 

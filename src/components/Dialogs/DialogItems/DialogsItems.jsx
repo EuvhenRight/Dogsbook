@@ -12,7 +12,6 @@ const DialogsItems = (props) => {
                 <img className={classes.dialogsavatar} src={props.avatar}></img>
                 {props.name}
             </NavLink>
-            <MessagesItems />
         </div>
     )
 }
