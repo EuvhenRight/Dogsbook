@@ -48,29 +48,29 @@ export const newPost = () => {
     EnterNewState(Appstate);
 };
 
+export const updateNewPostMessage = (newMes) => {
+    Appstate.dialogPage.newMessageText = newMes;
+    EnterNewState(Appstate);
+};
+
 export const updateNewPostText = (newText) => {
     Appstate.profilePage.newPostText = newText;
     EnterNewState(Appstate);
 };
 
-export const subscriber = (observer) => {
-    EnterNewState = observer;
-
-};
-
 export const DialogMessage = () => {
     let newDialogmessage = {
         id: 2,
-        message: Appstate.profilePage.newMessageText,
+        message: Appstate.dialogPage.newMessageText,
     };
 
     Appstate.dialogPage.messages.push(newDialogmessage);
     Appstate.dialogPage.newMessageText = '';
 };
 
-export const updateNewPostMessage = (newMes) => {
-    Appstate.dialogPage.newMessageText = newMes;
-    EnterNewState(Appstate);
+export const subscriber = (observer) => {
+    EnterNewState = observer;
+
 };
 
 export default Appstate;

@@ -13,7 +13,6 @@ import Settings from './components/Settings/Settings';
 
 const App = (props) => {
 
-
   return (
 
     <div className="App-wrapper">
@@ -23,7 +22,7 @@ const App = (props) => {
         <Routes>
           <Route path="/dialogs/*"
             element={<Dialogs
-              dialogPage={props.Appstate.dialogPage}
+              state={props.Appstate.dialogPage}
               updateNewPostMessage={props.updateNewPostMessage}
               DialogMessage={props.DialogMessage} />} />
           <Route path="/profile"

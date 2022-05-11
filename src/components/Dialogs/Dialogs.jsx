@@ -6,12 +6,17 @@ import MessagesItems from './MessagesItem/MessagesItem';
 // import index from '../../index.jsx';
 
 const Dialogs = (props) => {
-
     let dialogElements =
         props.state.dialogs.map(d => <DialogsItems id={d.id} name={d.name} avatar={d.avatar} />);
 
-    let messagesElements =
-        props.state.messages.map(m => <MessagesItems id={m.id} message={m.message} />);
+
+    let messagesElements = props.state.messages.map(m => <MessagesItems
+        id={m.id} message={m.message}
+    // messages={props.state.messages}
+    // newMessageText={props.state.newMessageText}
+    // updateNewPostMessage={props.updateNewPostMessage}
+    // DialogMessage={props.DialogMessage}
+    />);
 
     return (
         <div className={classes.dialogs}>
@@ -19,13 +24,11 @@ const Dialogs = (props) => {
                 {dialogElements}
             </div>
             <div className={classes.messages}>
+                {/* messages={props.state.messages}
+                newMessageText={props.state.newMessageText}
+                updateNewPostMessage={props.updateNewPostMessage}
+                DialogMessage={props.DialogMessage} */}
                 {messagesElements}
-                {/* <MessagesItems
-                    messages={props.dialogPage.messages}
-                    newMessageText={props.dialogPage.newMessageText}
-                    updateNewPostMessage={props.updateNewPostMessage}
-                    DialogMessage={props.DialogMessage}
-                /> */}
             </div>
         </div>
     )
