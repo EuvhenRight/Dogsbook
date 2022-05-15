@@ -1,5 +1,7 @@
 const NEW_POST = "NEW-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_MESSAGE_BODY = "UPDATE_MESSAGE_BODY";
+const NEW_MESSAGE_BODY = "NEW_MESSAGE_BODY";
 
 
 let store = {
@@ -25,7 +27,11 @@ let store = {
             ],
             messages: [
                 { id: 1, message: 'How are you?' },
-            ]
+                { id: 2, message: 'Hi' },
+                { id: 3, message: 'Yes' },
+                { id: 4, message: 'No' },
+            ],
+            newPostTextMessage: ''
         },
         sideBar: {
             friends: [
@@ -82,6 +88,15 @@ let store = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubcriber(this._state);
+        } else if (action.type === UPDATE_MESSAGE_BODY) {
+            this._state.dialogPage.newPostTextMessage = action.body;
+            this._callSubcriber(this._state);
+        } else if (action.type === NEW_MESSAGE_BODY) {
+            let newTextBody = this._state.dialogPage.newPostTextMessage;
+            this._state.dialogPage.newPostTextMessage = '';
+            this._state.dialogPage.messages.push({ id: 5, message: newTextBody });
+            this._callSubcriber(this._state);
+
         }
     }
 }
@@ -91,6 +106,10 @@ export const addTextAreaActionCreator = (text) => ({
     type: UPDATE_NEW_POST_TEXT, newText: text
 });
 
+export const newMessageBodyActionCreator = () => ({ type: NEW_MESSAGE_BODY });
+export const updateMessageBodyActionCreator = (body) => ({
+    type: UPDATE_MESSAGE_BODY, body: body
+});
 
 
 export default store;
