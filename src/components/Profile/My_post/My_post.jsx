@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import { newPost, newPostText } from '../../../redux/state';
 import classes from './My_post.module.css'
 import Post from './Post/Post';
+import { addPostActionCreator, addTextAreaActionCreator } from '../../../redux/state';
 
 
 const My_post = (props) => {
@@ -13,14 +14,13 @@ const My_post = (props) => {
 
     let addPost = () => {
         let text = newAddPost.current.value;
-        props.newPost(text);
+        props.dispatch(addPostActionCreator());
         newAddPost.current.value = '';
     };
 
     let addTextArea = () => {
         let text = newAddPost.current.value;
-        props.updateNewPostText(text);
-        console.log(text);
+        props.dispatch(addTextAreaActionCreator(text))
     };
 
     return (
