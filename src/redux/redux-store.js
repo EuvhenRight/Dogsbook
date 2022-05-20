@@ -6,12 +6,12 @@ import sideBarReducer from "./sidebar-Reducer";
 
 
 let reducers = combineReducers({
-    profileReducer: profileReducer,
-    dialogReducer: dialogReducer,
-    sideBarReducer: sideBarReducer
+    profilePage: profileReducer,
+    dialogPage: dialogReducer,
+    sideBar: sideBarReducer
 });
 
-const store = createStore();
+const store = createStore(reducers);
 
 
 export default store;
