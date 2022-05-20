@@ -1,26 +1,21 @@
 import React, { createRef } from 'react';
-import { newPost, newPostText } from '../../../redux/state';
-import classes from './My_post.module.css'
+import classes from './MyPost.module.css'
 import Post from './Post/Post';
-import { addPostActionCreator, addTextAreaActionCreator } from '../../../redux/profile-Reducer';
 
 
-const My_post = (props) => {
-
+const MyPost = (props) => {
 
     let postsElement = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />)
 
     let newAddPost = createRef();
 
-    let addPost = () => {
-        let text = newAddPost.current.value;
-        props.dispatch(addPostActionCreator());
-        newAddPost.current.value = '';
+    let onAddPost = () => {
+      props.addPost()
     };
 
     let addTextArea = () => {
         let text = newAddPost.current.value;
-        props.dispatch(addTextAreaActionCreator(text))
+        props.updateNewPostText(text)
     };
 
     return (
@@ -33,7 +28,7 @@ const My_post = (props) => {
                     value={props.newPostText} />
             </div>
             <div className={classes.wall_post}>
-                <button onClick={addPost}>Add posts</button>
+                <button onClick={onAddPost}>Add posts</button>
             </div>
             <div>
                 {postsElement}
@@ -42,4 +37,4 @@ const My_post = (props) => {
     )
 }
 
-export default My_post;
+export default MyPost;

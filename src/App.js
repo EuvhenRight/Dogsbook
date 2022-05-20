@@ -13,7 +13,6 @@ import Settings from './components/Settings/Settings';
 
 const App = (props) => {
 
-
   return (
 
     <div className="App-wrapper">
@@ -26,8 +25,7 @@ const App = (props) => {
               store={props.store} />} />
           <Route path="/profile"
             element={<Profile
-              profilePage={props.state.profilePage}
-              dispatch={props.dispatch} />} />
+                store={props.store} />} />
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />
           <Route path="/settings" element={<Settings />} />
