@@ -46,11 +46,11 @@ let store = {
         }
     },
 
-    _callSubcriber() {
+    _callSubcribe() {
 
     },
 
-    getstate() {
+    getState() {
         return this._state;
     },
 
