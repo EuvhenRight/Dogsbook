@@ -1,15 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './Sidebar.module.css'
-import SidebarItems from './SidebarItems';
+import SidebarItems from './SidebarItems/SidebarItems';
 
 const SelectedLink = ({ isActive }) => isActive ? classes.active : classes.link;
 
 
 const Sidebar = (props) => {
 
+    let state = props.sideBar;
+
     let sidebarElements =
-        props.state.friends.map(d => <SidebarItems id={d.id} name={d.name} avatar={d.avatar} />);
+        state.friends.map(d => <SidebarItems id={d.id} name={d.name} avatar={d.avatar} />);
 
     return (
         <nav className={classes.sidebar}>
