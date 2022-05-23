@@ -8,10 +8,8 @@ const SelectedLink = ({ isActive }) => isActive ? classes.active : classes.link;
 
 const Sidebar = (props) => {
 
-    let state = props.sideBar;
-
     let sidebarElements =
-        state.friends.map(d => <SidebarItems id={d.id} name={d.name} avatar={d.avatar} />);
+        props.friends.map(d => <SidebarItems id={d.id} name={d.name} avatar={d.avatar} />);
 
     return (
         <nav className={classes.sidebar}>
