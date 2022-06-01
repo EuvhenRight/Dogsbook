@@ -9,7 +9,7 @@ const SelectedLink = ({ isActive }) => isActive ? classes.active : classes.link;
 const Sidebar = (props) => {
 
     let sidebarElements =
-        props.friends.map(d => <SidebarItems id={d.id} name={d.name} avatar={d.avatar} />);
+        props.friends.map(s => <SidebarItems key={s.id} id={s.id} name={s.name} avatar={s.avatar} />);
 
     return (
         <nav className={classes.sidebar}>
@@ -18,6 +18,9 @@ const Sidebar = (props) => {
             </div>
             <div>
                 <NavLink to='/dialogs' className={SelectedLink}>Message</NavLink>
+            </div>
+            <div>
+                <NavLink to='/users' className={SelectedLink}>Users</NavLink>
             </div>
             <div>
                 <NavLink to='/news' className={SelectedLink}>News</NavLink>
