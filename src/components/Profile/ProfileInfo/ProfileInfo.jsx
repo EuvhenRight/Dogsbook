@@ -1,18 +1,35 @@
 import React from 'react';
 import classes from '../ProfileInfo/ProfileInfo.module.css';
-import Ava_p from './../../Photo/ava1.jpg';
+import Preloader from "../../general/Preloader/Preloader";
 
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+
+    if (!props.profile) {
+        return <Preloader/>
+    }
+
     return (
-        <div className={classes.profile_info}>
-            <div className="main_picture">
-                <img src="https://funik.ru/wp-content/uploads/2018/11/a9e0d86d036b40f1ecdc-700x394.jpg"></img>
+        <div proclassName={classes.profile_info}>
+            <div>
+                <img src="https://funik.ru/wp-content/uploads/2018/11/a9e0d86d036b40f1ecdc-700x394.jpg"/>
             </div>
             <div className={classes.avatar_info}>
-                <img src={Ava_p}></img>
-                <div className={classes.data_user}>
+                <img src={props.profile.photos.large}/>
+                <h3>{props.profile.fullName}</h3>
+                <div>About Me:
+                    <span>{props.profile.aboutMe}</span>
                 </div>
+                <div>Contacs:
+                    <div>{props.profile.contacts.facebook}</div>
+                    <div>{props.profile.contacts.instagram}</div>
+                    <div>{props.profile.contacts.github}</div>
+                </div>
+                <div>Work:
+                <div>{props.profile.lookingForAJob === false
+                    ? props.profile.lookingForAJob : props.profile.lookingForAJobDescription}</div>
+                </div>
+
             </div>
         </div>
     )
