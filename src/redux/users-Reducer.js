@@ -3,13 +3,14 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
-
+const SET_PRELOADER = "SET_PRELOADER";
 
 let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -53,15 +54,21 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 totalUsersCount: action.count
             };
+        case SET_PRELOADER:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            };
         default:
             return state;
     }
 };
 
-export const followActionCreator = (usersId) => ({type: FOLLOW, usersId});
-export const unFollowActionCreator = (usersId) => ({type: UNFOLLOW, usersId});
-export const setUsersActionCreator = (users) => ({type: SET_USERS, users});
-export const setCurrentPageActionCreator = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const setTotalCountActionCreator = (count) => ({type: SET_TOTAL_COUNT, count});
+export const follow = (usersId) => ({type: FOLLOW, usersId});
+export const unFollow = (usersId) => ({type: UNFOLLOW, usersId});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalCount = (count) => ({type: SET_TOTAL_COUNT, count});
+export const setPreloader = (isFetching) => ({type: SET_PRELOADER, isFetching});
 
 export default usersReducer;
