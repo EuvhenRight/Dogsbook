@@ -3,6 +3,7 @@ import classes from './Dialogs.module.css'
 import DialogsItems from './DialogItems/DialogsItems';
 import MessagesItems from './MessagesItem/MessagesItem';
 
+
 const Dialogs = (props) => {
 
     let state = props.dialogPage;
@@ -23,6 +24,9 @@ const Dialogs = (props) => {
         let body = e.target.value;
         props.updateMessageBody(body)
     };
+
+    // if(!props.isAuth) return <Navigate to={"/login"} />; - це була строка яка не пускада нас на сайт,
+    // як що ми не за логинились, зараз ми зробили
 
     return (
         <div className={classes.dialogs}>

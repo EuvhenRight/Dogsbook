@@ -1,18 +1,20 @@
 import React from 'react';
 import Profile from './Profile';
-import * as axios from "axios";
-import {setUsersProfile} from "../../redux/profile-Reducer";
+import {setUsersProfile, usersProfileThunk} from "../../redux/profile-Reducer";
 import {connect} from "react-redux";
-import {useParams} from "react-router-dom";
+import {Navigate, useParams} from "react-router-dom";
+import {withAuthRedirect} from "../Hoc/withAuhRedirect";
+import {compose} from "redux";
 
 
-export function withRouter(Children){
-    return(props)=>{
+export function withRouter(Children) {
+    return (props) => {
 
-        const match  = {params: useParams()};
-        return <Children {...props}  match = {match}/>
+        const match = {params: useParams()};
+        return <Children {...props} match={match}/>
     }
 }
+
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
@@ -22,14 +24,13 @@ class ProfileContainer extends React.Component {
             userId = 2;
         }
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => {
-                this.props.setUsersProfile(response.data);
-            })
+        this.props.usersProfileThunk(userId);
+
     }
 
-
     render() {
+
+        // if(!this.props.isAuth) return <Navigate to={"/login"} />;
 
         return (
             <div>
@@ -39,15 +40,25 @@ class ProfileContainer extends React.Component {
     }
 }
 
+// let AuthRedirectComponent = withAuthRedirect(ProfileContainer); // Хок на редирект, коли ти не за логінений тебе не пустить на страницю
+
+
 let mapStateToProps = (state) => {
     return ({
         profile: state.profilePage.profile,
     });
 }
 
+// let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
+//
+// export default connect(mapStateToProps, {
+//     setUsersProfile, usersProfileThunk},
+// )(WithUrlDataContainerComponent);
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer);
-
-export default connect(mapStateToProps, {
-    setUsersProfile
-}) (WithUrlDataContainerComponent);
+export default compose(// Супер функція компоновки с натівного Джава Скрипта, у кінці ставимо ProfileContainer,
+                        // а споатку всі обкладенкі та Хокі
+    withAuthRedirect,
+    withRouter,
+    connect(mapStateToProps, {
+        setUsersProfile, usersProfileThunk
+    }))(ProfileContainer);

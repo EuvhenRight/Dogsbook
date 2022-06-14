@@ -1,3 +1,6 @@
+import {getProfileApi} from "../components/API/Api";
+import {setToggleFollowInProgress, unFollowSuccess} from "./users-Reducer";
+
 const NEW_POST = "NEW-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USERS_PROFILE = "SET_USERS_PROFILE";
@@ -42,11 +45,21 @@ const profileReducer = (state = initialState, action) => {
 }
 
 export const addPostActionCreator = () => ({type: NEW_POST});
-export const addTextAreaActionCreator = (text) => ({
-    type: UPDATE_NEW_POST_TEXT, newText: text
-});
-export const setUsersProfile = (profile) => ({
-    type: SET_USERS_PROFILE, profile
-});
+export const addTextAreaActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const setUsersProfile = (profile) => ({type: SET_USERS_PROFILE, profile});
+
+export const usersProfileThunk = (userId) => {
+    return (dispatch) => {
+
+        // let userId = props.match.params.userId;
+        // if (!userId) {
+        //     userId = 2;
+        // }
+
+        getProfileApi(userId).then(data => {
+                dispatch(setUsersProfile(data));
+            })
+    }
+}
 
 export default profileReducer;
