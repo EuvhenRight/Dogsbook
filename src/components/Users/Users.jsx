@@ -1,9 +1,7 @@
-import React from 'react';
+import React, {useId} from 'react';
 import classes from './Users.module.css';
 import users_photo from '../../photos/users_photo.png';
-import {NavLink} from "react-router-dom";
-import {getFollowApi, getUnfollowApi} from "../API/Api";
-import {setToggleFollowInProgress} from "../../redux/users-Reducer";
+import {Navigate, NavLink} from "react-router-dom";
 
 
 let Users = (props) => {
@@ -32,31 +30,14 @@ let Users = (props) => {
                 </NavLink>
                 <span>
                     <div>
-                {u.followed ? <button disabled={props.isFetchingInProgress} onClick={() => {
-
-
-                    props.setToggleFollowInProgress(true);
-
-                    getUnfollowApi(u.id).then(data => {
-                        if (data.resultCode == 0) {
-                            props.unfollow(u.id);
-                        }
-                        props.setToggleFollowInProgress(false);
-                    });
-
-                }}>UnFollow</button> : <button disabled={props.isFetchingInProgress} onClick={() => {
-
-                    props.setToggleFollowInProgress(true);
-
-                    getFollowApi(u.id, {}).then(data => {
-
-                        if (data.resultCode == 0) {
-                            props.follow(u.id);
-                        }
-                        props.setToggleFollowInProgress(false);
-                    });
-
-                }}>Follow</button>}
+                {u.followed ? <button disabled={props.isFetchingInProgress.some(id => id === u.id)}
+                                      onClick={() => {
+                                          props.unfollow(u.id)
+                                      }}>UnFollow</button> :
+                    <button disabled={props.isFetchingInProgress.some(id => id === u.id)}
+                            onClick={() => {
+                                props.follow(u.id)
+                            }}>Follow</button>}
                     </div>
                     <div>{u.name}</div>
                     <div>{u.status}</div>

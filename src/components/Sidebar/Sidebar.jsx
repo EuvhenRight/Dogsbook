@@ -31,6 +31,9 @@ const Sidebar = (props) => {
             <div>
                 <NavLink to='/settings' className={SelectedLink}>Settings</NavLink>
             </div>
+            <div>
+                <NavLink to='/login' className={SelectedLink}>Login</NavLink>
+            </div>
             <div className={classes.sidebarData}>
                 <h3>Friends</h3>
                 <div className={classes.sidebarMain}>

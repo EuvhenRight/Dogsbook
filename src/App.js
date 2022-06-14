@@ -9,6 +9,7 @@ import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderComponent from "./components/Header/HeaderComponent";
+import LoginPage from "./components/Login/LoginPage";
 
 
 const App = (props) => {
@@ -28,6 +29,7 @@ const App = (props) => {
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/settings" element={<Settings/>}/>
+                    <Route path="/login" element={<LoginPage />}/>
                 </Routes>
             </div>
         </div>

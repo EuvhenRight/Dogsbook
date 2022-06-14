@@ -4,35 +4,34 @@ import Users from "./Users";
 import {
     follow,
     unFollow,
-    setUsers,
-    setCurrentPage, setTotalCount, setPreloader, setToggleFollowInProgress
+    setCurrentPage, setToggleFollowInProgress, setUsersThunkCreate
 } from "../../redux/users-Reducer";
 import Preloader from "../general/Preloader/Preloader";
-import {getUserApi} from "../API/Api";
+import {Navigate} from "react-router-dom";
+import {withAuthRedirect} from "../Hoc/withAuhRedirect";
+import Dialogs from "../Dialogs/Dialogs";
+import {compose} from "redux";
+
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.setPreloader(true);
 
-        getUserApi(this.props.currentPage, this.props.pageSize).then(data => {
-                this.props.setPreloader(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalCount(data.totalCount);
-            })
+        this.props.setUsersThunkCreate(this.props.currentPage, this.props.pageSize);
     }
+
 
     onChangedPage = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
-        this.props.setPreloader(true);
 
-        getUserApi(pageNumber, this.props.pageSize).then(data => {
-                this.props.setPreloader(false);
-                this.props.setUsers(data.items);
-            })
+        this.props.setUsersThunkCreate(pageNumber, this.props.pageSize);
+
     }
 
     render() {
+
+        // if(!this.props.isAuth) return <Navigate to={"/login"} />;
+
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users
@@ -43,7 +42,6 @@ class UsersContainer extends React.Component {
                 users={this.props.users}
                 unfollow={this.props.unFollow}
                 follow={this.props.follow}
-                setToggleFollowInProgress={this.props.setToggleFollowInProgress}
                 isFetchingInProgress={this.props.isFetchingInProgress}
             />
         </>
@@ -59,11 +57,18 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         setToggleFollowInProgress: state.usersPage.setToggleFollowInProgress,
-        isFetchingInProgress:state.usersPage.isFetchingInProgress
-
+        isFetchingInProgress:state.usersPage.isFetchingInProgress,
     }
+
 }
 
-export default connect(mapStateToProps, {
-    follow, unFollow, setUsers, setCurrentPage, setTotalCount, setPreloader,setToggleFollowInProgress
-})(UsersContainer);
+// let AuthRedirectComponent = withAuthRedirect(UsersContainer); // Хок на редирект, коли ти не за логінений тебе не пустить на страницю
+
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        follow, unFollow, setCurrentPage, setToggleFollowInProgress, setUsersThunkCreate}),
+)(UsersContainer)
+
+// export default connect(mapStateToProps, {
+//     follow, unFollow, setCurrentPage, setToggleFollowInProgress, setUsersThunkCreate})(AuthRedirectComponent);

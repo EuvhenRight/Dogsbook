@@ -1,22 +1,16 @@
 import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {setAuthUserLogin} from "../../redux/auth-Reducer";
-import {getAuthApi} from "../API/Api";
+import {authUserThunk, setAuthUserLogin} from "../../redux/auth-Reducer";
+import {compose} from "redux";
 
 
 class HeaderComponent extends React.Component {
 
     componentDidMount() {
-
-        getAuthApi().then(data => {
-
-                if (data.resultCode === 0) {
-                    let {id, email, login} = data.data;
-                    this.props.setAuthUserLogin(id, email, login);
-                }
-            });
+        this.props.authUserThunk();
     }
+
     render() {
 
         return (
@@ -31,4 +25,10 @@ let mapStateToProps = (state) => ({
 
 })
 
-export default connect(mapStateToProps, {setAuthUserLogin})(HeaderComponent);
+// export default connect(mapStateToProps, {setAuthUserLogin, authUserThunk})(HeaderComponent);
+// Супер функція компоновки с натівного Джава Скрипта, у кінці ставимо ProfileContainer,
+// а споатку всі обкладенкі та Хокі
+
+export default compose(
+    connect(mapStateToProps, {setAuthUserLogin, authUserThunk
+    }))(HeaderComponent);
