@@ -13,9 +13,19 @@ export const getAuthApi = () => {
         .then(response => response.data);
 };
 
-export const getProfileApi = (userId) => {
-    return instance.get(`profile/` + userId)
-        .then(response => response.data);
+export const profileApi = { // Зробив в одніеї компоненті
+    getProfileApi(userId) {
+        return instance.get(`profile/` + userId)
+            .then(response => response.data);
+    },
+    getStatusApi(userId) {// Статус нашего профайла, ДАЛ статус
+        return instance.get(`profile/status/` + userId)
+            .then(response => response.data);
+    },
+    putUpdateStatusApi(status) { //Зміна статуса на Сервері, це Пут запрос і нам тут потрібен Статус, котрій вже в нас є
+        return instance.put(`profile/status`,  {status: status})
+            .then(response => response.data);
+    }
 };
 
 export const getUserApi = (currentPage, pageSize) => {

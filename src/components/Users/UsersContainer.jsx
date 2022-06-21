@@ -7,9 +7,7 @@ import {
     setCurrentPage, setToggleFollowInProgress, setUsersThunkCreate
 } from "../../redux/users-Reducer";
 import Preloader from "../general/Preloader/Preloader";
-import {Navigate} from "react-router-dom";
 import {withAuthRedirect} from "../Hoc/withAuhRedirect";
-import Dialogs from "../Dialogs/Dialogs";
 import {compose} from "redux";
 
 

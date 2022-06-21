@@ -1,6 +1,11 @@
 import React from 'react';
 import Profile from './Profile';
-import {setUsersProfile, usersProfileThunk} from "../../redux/profile-Reducer";
+import {
+    setUsersProfile,
+    statusThunk,
+    updateStatusThunk,
+    usersProfileThunk
+} from "../../redux/profile-Reducer";
 import {connect} from "react-redux";
 import {Navigate, useParams} from "react-router-dom";
 import {withAuthRedirect} from "../Hoc/withAuhRedirect";
@@ -21,10 +26,11 @@ class ProfileContainer extends React.Component {
 
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 2;
+            userId = 24204;
         }
 
         this.props.usersProfileThunk(userId);
+        this.props.statusThunk(userId);
 
     }
 
@@ -34,7 +40,9 @@ class ProfileContainer extends React.Component {
 
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile}/>
+                <Profile {...this.props} profile={this.props.profile}
+                         status={this.props.status}
+                         updateStatusThunk={this.props.updateStatusThunk}/>
             </div>
         )
     }
@@ -46,6 +54,7 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
     return ({
         profile: state.profilePage.profile,
+        status: state.profilePage.status
     });
 }
 
@@ -56,9 +65,9 @@ let mapStateToProps = (state) => {
 // )(WithUrlDataContainerComponent);
 
 export default compose(// Супер функція компоновки с натівного Джава Скрипта, у кінці ставимо ProfileContainer,
-                        // а споатку всі обкладенкі та Хокі
+    // а споатку всі обкладенкі та Хокі
     withAuthRedirect,
     withRouter,
     connect(mapStateToProps, {
-        setUsersProfile, usersProfileThunk
+        setUsersProfile, usersProfileThunk, statusThunk, updateStatusThunk
     }))(ProfileContainer);
