@@ -7,9 +7,10 @@ import {
     usersProfileThunk
 } from "../../redux/profile-Reducer";
 import {connect} from "react-redux";
-import {Navigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {withAuthRedirect} from "../Hoc/withAuhRedirect";
 import {compose} from "redux";
+import {getAuthorizedUserId, getIsAuth, getProfile, getStatus} from "../../redux/profile-Selectors";
 
 
 export function withRouter(Children) {
@@ -26,7 +27,7 @@ class ProfileContainer extends React.Component {
 
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 24204;
+            userId = this.props.authorizedUserId;
         }
 
         this.props.usersProfileThunk(userId);
@@ -34,8 +35,8 @@ class ProfileContainer extends React.Component {
 
     }
 
-    render() {
 
+    render() {
         // if(!this.props.isAuth) return <Navigate to={"/login"} />;
 
         return (
@@ -48,15 +49,18 @@ class ProfileContainer extends React.Component {
     }
 }
 
-// let AuthRedirectComponent = withAuthRedirect(ProfileContainer); // Хок на редирект, коли ти не за логінений тебе не пустить на страницю
+// let AuthRedirectComponent = withAuthRedirect(ProfileContainer); // Хок на редирект, коли ти не за логінений тебе не пустить на сторінку
 
 
 let mapStateToProps = (state) => {
-    return ({
-        profile: state.profilePage.profile,
-        status: state.profilePage.status
-    });
-}
+
+    return {
+        profile: getProfile(state),
+        status: getStatus(state),
+        authorizedUserId: getAuthorizedUserId(state), // стейт авторізаціі
+        isAuth: getIsAuth(state),
+    }
+};
 
 // let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
 //
@@ -65,7 +69,7 @@ let mapStateToProps = (state) => {
 // )(WithUrlDataContainerComponent);
 
 export default compose(// Супер функція компоновки с натівного Джава Скрипта, у кінці ставимо ProfileContainer,
-    // а споатку всі обкладенкі та Хокі
+    // а спочатку всі обкладенки та Хокі
     withAuthRedirect,
     withRouter,
     connect(mapStateToProps, {
