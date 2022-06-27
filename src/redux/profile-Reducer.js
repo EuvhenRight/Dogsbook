@@ -13,7 +13,7 @@ let initialState = {
         // { id: 3, message: 'I love you!', likesCount: 150 },
         // { id: 4, message: 'I love you!', likesCount: 150 }
     ],
-    profile: null, // піднрузка користувача
+    profile: null, // підгрузка користувача
     status: '' // статус, поки він чистий
 };
 
@@ -60,8 +60,9 @@ export const setStatus = (status) => ({type: SET_STATUS, status});
 export const usersProfileThunk = (userId) => {
     return (dispatch) => {
 
-        profileApi.getProfileApi(userId).then(data => {
-            dispatch(setUsersProfile(data));
+        profileApi.getProfileApi(userId)
+            .then(response => {
+            dispatch(setUsersProfile(response.data));
         })
     }
 };
@@ -70,8 +71,8 @@ export const statusThunk = (userId) => {
     return (dispatch) => {
         profileApi.getStatusApi(userId) // Запрос на сервак по статусу, ми беремо статус по userId та приходить він
             // із setStatus
-            .then(data => {
-                dispatch(setStatus(data));
+            .then(response => {
+                dispatch(setStatus(response.data));
             })
     }
 };
