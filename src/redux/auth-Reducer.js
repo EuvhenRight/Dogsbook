@@ -1,7 +1,7 @@
 import {authApi} from "../components/API/Api";
 import {stopSubmit} from "redux-form";
 
-const SET_USER_LOGIN = "SET_USER_LOGIN";
+const SET_USER_LOGIN = "dogsbook/auth/SET_USER_LOGIN";
 
 
 let initialState = {
@@ -15,8 +15,8 @@ const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_LOGIN:
             return {
-                ...state,
-                ...action.payload,
+                ...state, // стейт який був
+                ...action.payload, // додаємо АС, та змінюємо стейт
             };
 
         default:
@@ -30,39 +30,32 @@ export const setAuthUserLogin = (id, email, login, isAuth) => ({
 });
 
 
-export const authUserThunk = () => (dispatch) => { // Санка на ініціалізацію юзера
-    return authApi.me()
-        .then(response => {
+export const authUserThunk = () => async (dispatch) => { // Санка на ініціалізацію юзера
+   const response = await authApi.me()
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data;
                 dispatch(setAuthUserLogin(id, email, login, true)); // Диспатч АС
             }
-        });
 }
 
-export const loginThunk = (email, password, rememberMe) => (dispatch) => { // Санка на логінізацію на сайті
+export const loginThunk = (email, password, rememberMe) => async (dispatch) => { // Санка на логінізацію на сайті
 
-    authApi.login(email, password, rememberMe)
-        .then(response => {
+    const response = await authApi.login(email, password, rememberMe)
             if (response.data.resultCode === 0) {
                 dispatch(authUserThunk()); //  діспатчим Санку ініціалізаціі юзера
             } else {
                 let messages = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
                 dispatch(stopSubmit("login", {_error: messages})) // якщо  довжина массіва > 0 помилок в массів не прийшло
-                // пишимо "Some error", як що є визиваємо валідацию {_error: messages}
+                // пишемо "Some error", як що є визиваємо валідацию {_error: messages}
             }
-        });
 }
 
-export const logoutThunk = () => (dispatch) => { //  діспатчим Санку вихода юзера з сайту та обнулямо дані
+export const logoutThunk = () => async (dispatch) => { //  діспатчим Санку вихода юзера з сайту та обнулямо дані
                                                 // (null, null, null, false));
-
-    authApi.logout()
-        .then(response => {
+    const response = await authApi.logout()
             if (response.data.resultCode === 0) {
                 dispatch(setAuthUserLogin(null, null, null, false));
             }
-        });
 }
 
 

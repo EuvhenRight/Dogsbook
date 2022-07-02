@@ -1,0 +1,40 @@
+
+.selectedPages {
+    border-radius: 100%;
+    color: purple;
+    text-decoration:none;
+    font-weight:bold;
+    line-height: 1.5;
+    /*border-color: gray;*/
+    border: 1px solid gray;
+    padding: 2px;
+}
+
+.numberPage{
+    padding: 10px;
+    color: chocolate;
+    text-decoration:none;
+    border: 1px solid transparent;
+    line-height: 1.5;
+
+}
+.numberPage.selectedPages {
+    border: 1px solid gray;
+}
+
+.prev {
+    border-radius: 50px 0 0 50px;
+    width: 100px;
+    color: purple;
+    background-color: yellow;
+    border: 1px solid gray;
+}
+
+
+.next {
+    border-radius: 0 50px 50px 0;
+    width: 100px;
+    color: purple;
+    background-color: yellow;
+    border: 1px solid gray;
+}

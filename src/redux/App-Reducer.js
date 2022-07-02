@@ -1,7 +1,7 @@
 import {authUserThunk} from "./auth-Reducer";
 
 
-const SET_INITIALIZED_SUCCESS = "SET_INITIALIZED_SUCCESS";
+const SET_INITIALIZED_SUCCESS = "dogsbook/app/SET_INITIALIZED_SUCCESS";
 
 
 let initialState = {

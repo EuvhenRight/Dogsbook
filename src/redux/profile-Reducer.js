@@ -1,10 +1,10 @@
 import {profileApi} from "../components/API/Api";
 
 
-const NEW_POST = "NEW-POST"; //  Генерує новий месседж
+const NEW_POST = "dogsbook/profile/NEW-POST"; //  Генерує новий месседж
 // const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"; // Обновляє нове повідомлення // зараз цим займається Redux-Form
-const SET_USERS_PROFILE = "SET_USERS_PROFILE"; // Підгружає користувача
-const SET_STATUS = "SET_STATUS"; // Наш статус в Профайлі
+const SET_USERS_PROFILE = "dogsbook/profile/SET_USERS_PROFILE"; // Підгружає користувача
+const SET_STATUS = "dogsbook/profile/SET_STATUS"; // Наш статус в Профайлі
 
 let initialState = {
     posts: [
@@ -57,37 +57,22 @@ export const setUsersProfile = (profile) => ({type: SET_USERS_PROFILE, profile})
 export const setStatus = (status) => ({type: SET_STATUS, status});
 
 
-export const usersProfileThunk = (userId) => {
-    return (dispatch) => {
-
-        profileApi.getProfileApi(userId)
-            .then(response => {
-            dispatch(setUsersProfile(response.data));
-        })
-    }
+export const usersProfileThunk = (userId) => async (dispatch) => {
+    let response = await profileApi.getProfileApi(userId)
+    dispatch(setUsersProfile(response.data));
 };
 
-export const statusThunk = (userId) => {
-    return (dispatch) => {
-        profileApi.getStatusApi(userId) // Запрос на сервак по статусу, ми беремо статус по userId та приходить він
-            // із setStatus
-            .then(response => {
-                dispatch(setStatus(response.data));
-            })
-    }
+export const statusThunk = (userId) => async (dispatch) => {
+    let response = await profileApi.getStatusApi(userId) // Запрос на сервак по статусу, ми беремо статус по userId та приходить він
+    // із setStatus
+    dispatch(setStatus(response.data));
 };
 
-export const updateStatusThunk = (status) => {  // беремо вже реальний статус та оновлюємо його
-
-    return (dispatch) => {
-        profileApi.putUpdateStatusApi(status)
-            .then(response => {
-                if (response.data.resultCode === 0) { // якщо що код 0 відповідь з сервера тоді ми показуємо статус
-                    dispatch(setStatus(status));
-                }
-            })
+export const updateStatusThunk = (status) => async (dispatch) => { // беремо вже реальний статус та оновлюємо його
+    let response = await profileApi.putUpdateStatusApi(status)
+    if (response.data.resultCode === 0) { // якщо що код 0 відповідь з сервера тоді ми показуємо статус
+        dispatch(setStatus(status));
     }
 };
-
 
 export default profileReducer;
