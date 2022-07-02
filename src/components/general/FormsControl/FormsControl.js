@@ -1,5 +1,7 @@
 import React from "react";
 import classes from "./FormControl.module.css"
+import {Field} from "redux-form";
+import {required} from "../Validations/Validations";
 
 
 export const Textarea = ({input, meta, ...props}) => { // REST  оператор, беремо не всі пропси, а тільки ті які нам потрібні
@@ -28,3 +30,13 @@ export const Input = ({input, meta, ...props}) => {
         </div>
     )
 }
+
+export const createField = (placeholder, name, component, validate, props = {}, text = "") => (
+    <div>
+        <Field placeholder={placeholder}
+               name={name}
+               component={component}
+               validate={validate}
+               {...props}/> {text}
+    </div>
+)

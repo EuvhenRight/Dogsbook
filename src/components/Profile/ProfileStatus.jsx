@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 
 // class ProfileStatus extends React.Component {
@@ -49,27 +49,44 @@ const ProfileStatus = (props) => {
 
     let [editMode, setActivateEditMode] = useState(false);
 
-    let [status, setUpdateStatus] = useState("");
+    let [status, setUpdateStatus] = useState(props.status);
+
+    useEffect(()=>{
+        setUpdateStatus(props.status)
+    }, [props.status]);
+
+
+    const activateMode = () => {
+        setActivateEditMode(true);
+    };
+
+    const deActivateMode = () => {
+        setActivateEditMode(false);
+        props.updateStatusThunk(status)
+
+    };
+    const updateStatus = (e) => {
+        setUpdateStatus(e.currentTarget.value)
+    };
+
 
     return (
-        <form onSubmit={props.updateStatusThunk(status)}>
             <div>
                 {!editMode ? (
                     <div>
                         <span
-                            onDoubleClick={() => setActivateEditMode(true)}>{status === "" ? "----" : status}</span>
+                            onDoubleClick={activateMode}>{status === "" ? "----" : status}</span>
                         {/* Зробив на хуке, треба тільки на обработчик кидати ффункцію, та добавляти булево значення */}
                     </div>
                 ) : (<div>
-                        <input onChange={(e) => setUpdateStatus(e.currentTarget.value)}
+                        <input onChange={updateStatus}
                                autoFocus={true}
-                               onBlur={() => setActivateEditMode(false)}
+                               onBlur={deActivateMode}
                                value={status}></input>
                     </div>     // autoFocus - убирает автофокус с данного елемента
                     // onBlur - убираешь наведение мишью и editMode становиться false,
                 )}
             </div>
-        </form>
     )
 }
 
