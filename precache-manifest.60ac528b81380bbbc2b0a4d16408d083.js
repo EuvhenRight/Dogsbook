@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "/Dogsbook/static/js/0.3b6e1e19.chunk.js"
   },
   {
-    "revision": "73b7cc94ca5cbf9ab314",
+    "revision": "35618c211a40358e678a",
     "url": "/Dogsbook/static/css/main.523a3fa1.chunk.css"
   },
   {
-    "revision": "73b7cc94ca5cbf9ab314",
-    "url": "/Dogsbook/static/js/main.73b7cc94.chunk.js"
+    "revision": "35618c211a40358e678a",
+    "url": "/Dogsbook/static/js/main.35618c21.chunk.js"
   },
   {
     "revision": "c8f73fe82c117c708bc2",
@@ -92,7 +92,7 @@ self.__precacheManifest = [
     "url": "/Dogsbook/static/media/ava1.780e971f.jpg"
   },
   {
-    "revision": "105a4ed0267094236efa7b1b92c04a44",
+    "revision": "5e52e6423309fb7be81ca8a38d610160",
     "url": "/Dogsbook/index.html"
   }
 ];
