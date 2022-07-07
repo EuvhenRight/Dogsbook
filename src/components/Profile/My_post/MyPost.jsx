@@ -14,7 +14,9 @@ const MyPost = (props) => {
     // let newAddPost = createRef(); видалив реф, зараз цим займається PostForm
 
     let onAddPost = (values) => {
+    
         props.addPost(values.addPostMessage)  // функція котра робить відправку повідомлень за стейта Редакс-Форм,
+
         // addPostMessage - назва компонента  name={"addPostMessage"} в тексєріі в PostForm
     };
 

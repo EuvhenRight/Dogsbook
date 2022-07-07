@@ -8,6 +8,7 @@ import {useState} from "react";
 import ProfileDataForm from "./ProfileDataForm";
 
 
+
 const ProfileInfo = ({profile, isOwner, savePhotoThunk, status, updateStatusThunk, safeProfileThunk}) => {
 
     let [editMode, setActivateEditMode] = useState(false);
@@ -40,6 +41,7 @@ const ProfileInfo = ({profile, isOwner, savePhotoThunk, status, updateStatusThun
                     <ProfileStatus className={classes.profileStatus}
                                    status={status}
                                    updateStatusThunk={updateStatusThunk}/>
+
                 </div>
 
                 {editMode ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> : <ProfileData

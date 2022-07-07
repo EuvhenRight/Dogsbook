@@ -9,6 +9,7 @@ const Profile = (props) => {
 
     return (
         <div className={classes.profile}>
+
             <ProfileInfo isOwner={props.isOwner}
                          savePhotoThunk={props.savePhotoThunk}
                          profile={props.profile}
@@ -16,6 +17,7 @@ const Profile = (props) => {
                          updateStatusThunk={props.updateStatusThunk}
                          safeProfileThunk={props.safeProfileThunk}/>
             <MyPostContainer profile={props.profile}/>
+            
             {/* в пропсах передаємо profile, status, updateStatusThunk*/}
         </div>
     )

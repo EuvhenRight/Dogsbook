@@ -1,6 +1,7 @@
 import {authApi, securityApi} from "../components/API/Api";
 import {stopSubmit} from "redux-form";
 
+
 const SET_USER_LOGIN = "dogsbook/auth/SET_USER_LOGIN";
 const GET_CAPTCHA_SUCCESS = "dogsbook/auth/GET_CAPTCHA_SUCCESS";
 
@@ -40,7 +41,6 @@ export const getCaptchaSuccess = (captchaUrl) => ({
     payload: {captchaUrl} // Добавив, Captcha, для того, щоб була перевірка при логінізації
 });
 
-
 export const authUserThunk = () => async (dispatch) => { // Санка на ініціалізацію юзера
     const response = await authApi.me()
     if (response.data.resultCode === 0) {
@@ -78,6 +78,5 @@ export const logoutThunk = () => async (dispatch) => { //  діспатчим С
         dispatch(setAuthUserLogin(null, null, null, false));
     }
 };
-
 
 export default authReducer;

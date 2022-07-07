@@ -1,8 +1,6 @@
 import {profileApi} from "../components/API/Api";
 import profile from "../components/Profile/Profile";
 import {stopSubmit} from "redux-form";
-
-
 const NEW_POST = "dogsbook/profile/NEW-POST"; //  Генерує новий месседж
 // const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"; // Обновляє нове повідомлення // зараз цим займається Redux-Form
 const SET_USERS_PROFILE = "dogsbook/profile/SET_USERS_PROFILE"; // Підгружає користувача
@@ -104,5 +102,6 @@ export const safeProfileThunk = (profile) => async (dispatch, getState) => {
         return Promise.reject(response.data.messages[0])//
     }
 };
+
 
 export default profileReducer;

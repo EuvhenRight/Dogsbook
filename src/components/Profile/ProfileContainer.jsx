@@ -35,11 +35,11 @@ class ProfileContainer extends React.Component {
         this.props.statusThunk(userId);
     }
 
-
     componentDidMount() {
 
         this.refreshProfile(); // перший раз обновляється профіль
     }
+
 
     componentDidUpdate(prevProps, prevState, snapshot) {
 
@@ -48,8 +48,6 @@ class ProfileContainer extends React.Component {
             this.refreshProfile();
         }
     }
-
-
     render() {
         // if(!this.props.isAuth) return <Navigate to={"/login"} />;
 
@@ -61,6 +59,8 @@ class ProfileContainer extends React.Component {
                          updateStatusThunk={this.props.updateStatusThunk}
                          savePhotoThunk={this.props.savePhotoThunk}
                          safeProfileThunk={this.props.safeProfileThunk}/>
+
+                        
             </div>
         )
     }
@@ -92,3 +92,4 @@ export default compose(// Супер функція компоновки с на
     connect(mapStateToProps, {
         setUsersProfile, usersProfileThunk, statusThunk, updateStatusThunk, savePhotoThunk, safeProfileThunk
     }))(ProfileContainer);
+

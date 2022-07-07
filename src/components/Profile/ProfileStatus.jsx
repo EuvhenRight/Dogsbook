@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import classes from './Profile.module.css';
 
+
 // class ProfileStatus extends React.Component {
 //     state = { // локальный стейт, чтобы не делать изменения на основном стейте, делает их в компоненте
 //         editMode: false
@@ -71,6 +72,7 @@ const ProfileStatus = (props) => {
 
 
     return (
+    
         <div>
             {!editMode ? (
                 <div><b>Status:</b>
