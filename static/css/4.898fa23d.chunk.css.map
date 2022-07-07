@@ -1,0 +1,1 @@
+{"version":3,"sources":["/Users/macbook/Documents/JS/React 2.0/it-camasutra/src/components/Login/LoginPage.module.css","4.898fa23d.chunk.css"],"names":[],"mappings":"AAAA,wBACI,SCCJ","file":"4.898fa23d.chunk.css","sourcesContent":[".error {\n    color: red;\n}\n",".LoginPage_error__1hCQL {\n    color: red;\n}\n\n"]}
