@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Dialogs.module.css'
 import DialogsItems from './DialogItems/DialogsItems';
 import MessagesItems from './MessagesItem/MessagesItem';
+import DialogsReduxForm from "./DialogsForm";
 
 
 const Dialogs = (props) => {
@@ -14,16 +15,17 @@ const Dialogs = (props) => {
     let messagesElements =
         state.messages.map(m => <MessagesItems key={m.id} id={m.id} message={m.message} />);
 
-    let newPostTextMessage = state.newPostTextMessage;
+    // let newPostTextMessage = state.newPostTextMessage; дані зі старого стейта
 
-    let sendMessageClick = () => {
-        props.newMessageBody()
-    };
+    // let sendMessageClick = () => {
+    //     props.newMessageBody()
+    // };
 
-    let newMessageText = (e) => {
-        let body = e.target.value;
-        props.updateMessageBody(body)
-    };
+  let addNewMessageClick = (values) => {
+        props.newMessageBody(values.newPostTextMessage) // нова функція котра бере з пропсів newMessageBody та
+      // та передає данні(нові мессаджі) для форми, newPostTextMessage - назва Fielda в DialogsForm який відповідає за
+      // "textarea"
+  };
 
     // if(!props.isAuth) return <Navigate to={"/login"} />; - це була строка яка не пускада нас на сайт,
     // як що ми не за логинились, зараз ми зробили
@@ -36,13 +38,8 @@ const Dialogs = (props) => {
             <div className={classes.messages}>
                 <div>{messagesElements}</div>
                 <div>
-                    <div><textarea
-                        placeholder='enter message'
-                        onChange={newMessageText}
-                        value={newPostTextMessage}>
-                    </textarea></div>
-                    <div><button onClick={sendMessageClick}>
-                        add message</button></div>
+                   <DialogsReduxForm onSubmit={addNewMessageClick} />
+                {/* Сюди вводим  addNewMessageClick - це функція відповідає за відправку месседжів */}
                 </div>
             </div>
         </div>
