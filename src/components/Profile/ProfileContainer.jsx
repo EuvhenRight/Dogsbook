@@ -1,6 +1,8 @@
 import React from 'react';
 import Profile from './Profile';
 import {
+    safeProfileThunk,
+    savePhotoThunk,
     setUsersProfile,
     statusThunk,
     updateStatusThunk,
@@ -23,8 +25,7 @@ export function withRouter(Children) {
 
 class ProfileContainer extends React.Component {
 
-    componentDidMount() {
-
+    refreshProfile() { //обновлялка профіля
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.authorizedUserId;
@@ -32,18 +33,34 @@ class ProfileContainer extends React.Component {
 
         this.props.usersProfileThunk(userId);
         this.props.statusThunk(userId);
+    }
 
+    componentDidMount() {
+
+        this.refreshProfile(); // перший раз обновляється профіль
     }
 
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+        if (this.props.match.params.userId != prevProps.match.params.userId) { // коли приходять нові пропси, да вони не равни,
+            // компонента перемалюється
+            this.refreshProfile();
+        }
+    }
     render() {
         // if(!this.props.isAuth) return <Navigate to={"/login"} />;
 
         return (
             <div>
                 <Profile {...this.props} profile={this.props.profile}
+                         isOwner={!this.props.match.params.userId}
                          status={this.props.status}
-                         updateStatusThunk={this.props.updateStatusThunk}/>
+                         updateStatusThunk={this.props.updateStatusThunk}
+                         savePhotoThunk={this.props.savePhotoThunk}
+                         safeProfileThunk={this.props.safeProfileThunk}/>
+
+                        
             </div>
         )
     }
@@ -73,5 +90,6 @@ export default compose(// Супер функція компоновки с на
     withAuthRedirect,
     withRouter,
     connect(mapStateToProps, {
-        setUsersProfile, usersProfileThunk, statusThunk, updateStatusThunk
+        setUsersProfile, usersProfileThunk, statusThunk, updateStatusThunk, savePhotoThunk, safeProfileThunk
     }))(ProfileContainer);
+

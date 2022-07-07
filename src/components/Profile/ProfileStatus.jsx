@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import classes from './Profile.module.css';
 
 
 // class ProfileStatus extends React.Component {
@@ -51,7 +52,7 @@ const ProfileStatus = (props) => {
 
     let [status, setUpdateStatus] = useState(props.status);
 
-    useEffect(()=>{
+    useEffect(() => {
         setUpdateStatus(props.status)
     }, [props.status]);
 
@@ -71,22 +72,23 @@ const ProfileStatus = (props) => {
 
 
     return (
-            <div>
-                {!editMode ? (
-                    <div>
-                        <span
-                            onDoubleClick={activateMode}>{status === "" ? "----" : status}</span>
-                        {/* Зробив на хуке, треба тільки на обработчик кидати ффункцію, та добавляти булево значення */}
-                    </div>
-                ) : (<div>
-                        <input onChange={updateStatus}
-                               autoFocus={true}
-                               onBlur={deActivateMode}
-                               value={status}></input>
-                    </div>     // autoFocus - убирает автофокус с данного елемента
-                    // onBlur - убираешь наведение мишью и editMode становиться false,
-                )}
-            </div>
+    
+        <div>
+            {!editMode ? (
+                <div><b>Status:</b>
+                    <span  className={classes.profileStatus}
+                        onDoubleClick={activateMode}>{status === "" ? "----" : status}</span>
+                    {/* Зробив на хуке, треба тільки на обработчик кидати ффункцію, та добавляти булево значення */}
+                </div>
+            ) : (<div>
+                    <input onChange={updateStatus}
+                           autoFocus={true}
+                           onBlur={deActivateMode}
+                           value={status}></input>
+                </div>     // autoFocus - убирает автофокус с данного елемента
+                // onBlur - убираешь наведение мишью и editMode становиться false,
+            )}
+        </div>
     )
 }
 

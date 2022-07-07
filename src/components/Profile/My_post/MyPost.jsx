@@ -6,12 +6,17 @@ import PostReduxForm from "./PostForm";
 
 const MyPost = (props) => {
 
-    let postsElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount} />)
+    let postsElement = props.posts.map(p => <Post
+        profile={props.profile} key={p.id} id={p.id}
+        message={p.message}
+        likesCount={p.likesCount}/>)
 
     // let newAddPost = createRef(); видалив реф, зараз цим займається PostForm
 
     let onAddPost = (values) => {
-      props.addPost(values.addPostMessage)  // функція котра робить відправку повідомлень за стейта Редакс-Форм,
+    
+        props.addPost(values.addPostMessage)  // функція котра робить відправку повідомлень за стейта Редакс-Форм,
+
         // addPostMessage - назва компонента  name={"addPostMessage"} в тексєріі в PostForm
     };
 
@@ -37,7 +42,7 @@ const MyPost = (props) => {
             <div>
                 {postsElement}
             </div>
-        </div >
+        </div>
     )
 }
 

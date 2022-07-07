@@ -26,10 +26,6 @@ let User = ({user, isFetchingInProgress, unfollow, follow}) => {
                     <div>{user.name}</div>
                     <div>{user.status}</div>
                     </span>
-                <span>
-                    <div>{"user.location.country"}</div>
-                    <div>{"user.location.city"}</div>
-                    </span>
             </div>)}
 
 export default User;

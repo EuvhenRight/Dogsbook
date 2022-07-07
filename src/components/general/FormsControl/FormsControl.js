@@ -26,7 +26,6 @@ export const Input = ({input, meta, ...props}) => {
             <div>
                 {hasError && <span>{meta.error}</span>}
             </div>
-
         </div>
     )
 }

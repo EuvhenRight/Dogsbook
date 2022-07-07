@@ -12,8 +12,10 @@ export const authApi = {
     me() {
         return instance.get(`auth/me`);
     },
-    login(email, password, rememberMe) {
-        return instance.post(`auth/login`, {email, password, rememberMe});
+ Lesson_100_final
+    login(email, password, rememberMe, captcha) {
+        return instance.post(`auth/login`, {email, password, rememberMe, captcha});
+
     },
     logout() {
         return instance.delete(`auth/login`);
@@ -35,9 +37,25 @@ export const profileApi = { // Зробив в однієї компоненті
     },
     putUpdateStatusApi(status) { //Зміна статуса на Сервері, це Пут запрос і нам тут потрібен Статус, котрій вже в нас є
         return instance.put(`profile/status`, {status: status})
+
+    },
+    safePhotoApi(photoFile) { //
+        const formData = new FormData();
+        formData.append("image", photoFile)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
+    saveProfileApi(profile) { //
+        return instance.put(`profile`, profile)
     }
+
 };
 
+    }
+};
 
 export const usersApi = {
     get(currentPage, pageSize) {
@@ -50,6 +68,13 @@ export const usersApi = {
         return instance.delete(`follow/${id}`)
     },
 };
+
+export const securityApi = {
+    getCaptcha() {
+        return instance.get(`/security/get-captcha-url`)
+    }
+}
+
 //
 // export const getUserApi = (currentPage, pageSize) => {
 //     return instance.get(`users?page=${currentPage}&count=${pageSize}`)
