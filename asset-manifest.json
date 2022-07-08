@@ -1,7 +1,7 @@
 {
   "main.css": "/Dogsbook/static/css/main.79b6525d.chunk.css",
-  "main.js": "/Dogsbook/static/js/main.f566d989.chunk.js",
-  "main.js.map": "/Dogsbook/static/js/main.f566d989.chunk.js.map",
+  "main.js": "/Dogsbook/static/js/main.d83f5850.chunk.js",
+  "main.js.map": "/Dogsbook/static/js/main.d83f5850.chunk.js.map",
   "static/css/1.6edd2e50.chunk.css": "/Dogsbook/static/css/1.6edd2e50.chunk.css",
   "static/js/1.5ddd92fa.chunk.js": "/Dogsbook/static/js/1.5ddd92fa.chunk.js",
   "static/js/1.5ddd92fa.chunk.js.map": "/Dogsbook/static/js/1.5ddd92fa.chunk.js.map",
@@ -31,14 +31,14 @@
   "static/media/users_photo.png": "/Dogsbook/static/media/users_photo.cd306bb0.png",
   "static/media/Preload_Cube.svg": "/Dogsbook/static/media/Preload_Cube.62ae0d72.svg",
   "static/media/ava1.jpg": "/Dogsbook/static/media/ava1.780e971f.jpg",
+  "static/css/3.3abb25ee.chunk.css.map": "/Dogsbook/static/css/3.3abb25ee.chunk.css.map",
   "static/css/main.79b6525d.chunk.css.map": "/Dogsbook/static/css/main.79b6525d.chunk.css.map",
-  "static/css/1.6edd2e50.chunk.css.map": "/Dogsbook/static/css/1.6edd2e50.chunk.css.map",
-  "static/css/2.d62488fe.chunk.css.map": "/Dogsbook/static/css/2.d62488fe.chunk.css.map",
   "static/css/5.a40e4b33.chunk.css.map": "/Dogsbook/static/css/5.a40e4b33.chunk.css.map",
   "static/css/6.dc914780.chunk.css.map": "/Dogsbook/static/css/6.dc914780.chunk.css.map",
-  "static/css/3.3abb25ee.chunk.css.map": "/Dogsbook/static/css/3.3abb25ee.chunk.css.map",
+  "static/css/2.d62488fe.chunk.css.map": "/Dogsbook/static/css/2.d62488fe.chunk.css.map",
+  "static/css/1.6edd2e50.chunk.css.map": "/Dogsbook/static/css/1.6edd2e50.chunk.css.map",
   "static/css/4.898fa23d.chunk.css.map": "/Dogsbook/static/css/4.898fa23d.chunk.css.map",
   "index.html": "/Dogsbook/index.html",
-  "precache-manifest.819ebf4090ca57b05d1f562931a8bf00.js": "/Dogsbook/precache-manifest.819ebf4090ca57b05d1f562931a8bf00.js",
+  "precache-manifest.95865822295efac4e62d0d46a021613b.js": "/Dogsbook/precache-manifest.95865822295efac4e62d0d46a021613b.js",
   "service-worker.js": "/Dogsbook/service-worker.js"
 }
